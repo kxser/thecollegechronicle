@@ -16,8 +16,6 @@ tags:
   - development
 ---
 
-Natural Human Writer said:
-
 Free and open source software, often shortened to FOSS, is software you are free to run, study, change, and share. That freedom comes from licenses that ship the source code along with the program and give users clear rights to use it and to pass it on. The idea is not only legal, it is social, since communities of volunteers and companies work in the open, discuss decisions in public, and accept contributions. You can see the results everywhere, from Linux and Firefox to Blender and VLC. What sets FOSS apart is not only the price, which is often zero, but the control it places in the hands of users and organizations. If the software matters to your work, you are not stuck waiting for a vendor to act.
 
 Cost is the first benefit most people notice. Many proprietary tools charge per user or per device, which adds up quickly as a team grows. With FOSS, you can install the same program on ten or ten thousand machines without new license fees, then spend your budget on training, hardware, or support. That shift matters for schools, startups, and public agencies that need modern tools but must justify every expense. FOSS also reduces the risk of vendor lock-in, since the code and the data formats are open to inspection. If a project slows down or a company changes course, you can keep using the software or hire someone to maintain it.
