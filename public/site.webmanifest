@@ -1,0 +1,15 @@
+{
+  "name": "The College Chronicle",
+  "short_name": "Chronicle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08080d",
+  "theme_color": "#ff4444",
+  "icons": [
+    {
+      "src": "/metucollegelogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: #000000;
+            color: white;
+            padding: 2rem;
+            border: 1px solid #333333;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            background: #000000;
+            padding: 2rem;
+            border: 1px solid #333333;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #333333;
+            background: #000000;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article-section {
+            border: 1px solid #333333;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: #111111;
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .remove-article {
+            background: #000000;
+            color: white;
+            border: 1px solid #333333;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .remove-article:hover {
+            background: #333333;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #333333;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #000000;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333333;
+        }
+
+        .btn-secondary {
+            background: #000000;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #333333;
+        }
+
+        .btn-success {
+            background: #000000;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #333333;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid #333333;
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results {
+            background: #000000;
+            padding: 2rem;
+            border: 1px solid #333333;
+            display: none;
+        }
+
+        .success {
+            color: #ffffff;
+        }
+
+        .error {
+            color: #ffffff;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-list li {
+            background: #000000;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #333333;
+        }
+
+        .metadata-section {
+            background: #0a0a0a;
+            padding: 1rem;
+            border: 1px solid #333333;
+            margin-bottom: 1rem;
+        }
+
+        .metadata-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .help-text {
+            font-size: 0.875rem;
+            color: #cccccc;
+            margin-top: 0.25rem;
+        }
+
+        .alternates-container {
+            border: 1px solid #333333;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .alternate-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alternate-item input {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Article Generator</h1>
+        </div>
+
+        <form id="articleForm" class="form-container">
+            <div class="form-group">
+                <label for="modelSelect">AI Model:</label>
+                <select id="modelSelect" name="model">
+                    <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+                    <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                    <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                </select>
+            </div>
+
+            <div id="articlesContainer">
+                <div class="article-section" data-article="0">
+                <div class="article-header">
+                    <h3 class="article-title">Article 1</h3>
+                </div>                    <div class="metadata-section">
+                        <div class="metadata-title">Metadata</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Title:</label>
+                                <input type="text" name="title_0" placeholder="Leave blank to auto-generate">
+                            </div>
+                            <div class="form-group">
+                                <label>Author:</label>
+                                <input type="text" name="author_0" placeholder="Author name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date:</label>
+                                <input type="text" name="date_0" placeholder="YYYY-MM-DD or natural format">
+                            </div>
+                            <div class="form-group">
+                                <label>Category:</label>
+                                <select name="category_0">
+                                    <option value="">Auto-detect from content</option>
+                                    <option value="science">Science</option>
+                                    <option value="research">Research</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="opinion">Opinion</option>
+                                    <option value="news">News</option>
+                                    <option value="art">Art</option>
+                                    <option value="misc">Misc</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea name="description_0" placeholder="Brief description" rows="2"></textarea>
+                    </div>                        <div class="form-group">
+                            <label>Alternate Language Links:</label>
+                            <div class="alternates-container" id="alternates_0">
+                                <div class="alternate-item">
+                                    <input type="text" placeholder="Language code" style="flex: 0 0 120px;">
+                                    <input type="url" placeholder="https://example.com/article" style="flex: 1;">
+                                    <button type="button" class="btn btn-secondary" onclick="addAlternate(0)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body_0">Article Content: <span style="color: #e53e3e;">*</span></label>
+                        <textarea name="body_0" id="body_0" required placeholder="Paste your article text here. The AI will fix formatting, punctuation, and generate proper metadata..." rows="10"></textarea>
+                        <div class="help-text">
+                            <strong>Tip:</strong> You can include natural language metadata in your text like:
+                            <br>• "The author is John Smith"
+                            <br>• "Written on Oct 26 2025" 
+                            <br>• "Category is technology"
+                            <br>• "This is a haiku about autumn"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" id="addArticleBtn" class="btn btn-secondary">Add Another Article</button>
+                <button type="submit" class="btn btn-primary">Generate Articles</button>
+            </div>
+        </form>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing your articles with AI...</p>
+            <p id="progress-text" style="font-size: 0.9em; margin-top: 1rem; display: none;"></p>
+        </div>
+
+        <div id="results" class="results">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        let articleCount = 1;
+
+        // Add new article section
+        document.getElementById('addArticleBtn').addEventListener('click', function() {
+            const container = document.getElementById('articlesContainer');
+            const newArticle = createArticleSection(articleCount);
+            container.appendChild(newArticle);
+            articleCount++;
+        });
+
+        function createArticleSection(index) {
+            const section = document.createElement('div');
+            section.className = 'article-section';
+            section.setAttribute('data-article', index);
+            
+            section.innerHTML = `
+                <div class="article-header">
+                    <h3 class="article-title">Article ${index + 1}</h3>
+                    <button type="button" class="remove-article" onclick="removeArticle(${index})">Remove</button>
+                </div>
+
+                <div class="metadata-section">
+                    <div class="metadata-title">Metadata</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input type="text" name="title_${index}" placeholder="Leave blank to auto-generate">
+                        </div>
+                        <div class="form-group">
+                            <label>Author:</label>
+                            <input type="text" name="author_${index}" placeholder="Author name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date:</label>
+                            <input type="text" name="date_${index}" placeholder="YYYY-MM-DD or natural format">
+                        </div>
+                        <div class="form-group">
+                            <label>Category:</label>
+                            <select name="category_${index}">
+                                <option value="">Auto-detect from content</option>
+                                <option value="science">Science</option>
+                                <option value="research">Research</option>
+                                <option value="technology">Technology</option>
+                                <option value="opinion">Opinion</option>
+                                <option value="news">News</option>
+                                <option value="art">Art</option>
+                                <option value="misc">Misc</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea name="description_${index}" placeholder="Brief description" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Alternate Language Links:</label>
+                        <div class="alternates-container" id="alternates_${index}">
+                            <div class="alternate-item">
+                                <input type="text" placeholder="Language code" style="flex: 0 0 120px;">
+                                <input type="url" placeholder="https://example.com/article" style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="addAlternate(${index})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="body_${index}">Article Content:</label>
+                    <textarea name="body_${index}" id="body_${index}" required placeholder="Paste your article text here" rows="10"></textarea>
+                </div>
+            `;
+            
+            return section;
+        }
+
+        function removeArticle(index) {
+            const section = document.querySelector(`[data-article="${index}"]`);
+            if (section && document.querySelectorAll('.article-section').length > 1) {
+                section.remove();
+            }
+        }
+
+        function addAlternate(articleIndex) {
+            const container = document.getElementById(`alternates_${articleIndex}`);
+            const newItem = document.createElement('div');
+            newItem.className = 'alternate-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="Language code (en, es, fr...)" style="flex: 0 0 120px;">
+                <input type="url" placeholder="https://example.com/article" style="flex: 1;">
+                <button type="button" class="btn btn-secondary" onclick="this.parentElement.remove()">-</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        // Form submission
+        document.getElementById('articleForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const form = document.getElementById('articleForm');
+            
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            
+            try {
+                const formData = new FormData(form);
+                const articles = [];
+                
+                // Collect all articles
+                const articleSections = document.querySelectorAll('.article-section');
+                console.log(`Found ${articleSections.length} article sections`);
+                
+                articleSections.forEach((section, idx) => {
+                    const index = section.getAttribute('data-article');
+                    const body = formData.get(`body_${index}`);
+                    console.log(`Section ${idx}: data-article="${index}", body length=${body ? body.length : 0}`);
+                    
+                    if (body && body.trim()) {
+                        const article = {
+                            title: formData.get(`title_${index}`) || null,
+                            date: formData.get(`date_${index}`) || null,
+                            author: formData.get(`author_${index}`) || null,
+                            category: formData.get(`category_${index}`) || null,
+                            description: formData.get(`description_${index}`) || null,
+                            body: body.trim()
+                        };
+                        
+                        // Collect alternates
+                        const alternatesContainer = document.getElementById(`alternates_${index}`);
+                        const alternateItems = alternatesContainer.querySelectorAll('.alternate-item');
+                        const alternates = [];
+                        
+                        alternateItems.forEach(item => {
+                            const inputs = item.querySelectorAll('input');
+                            if (inputs.length >= 2 && inputs[0].value.trim() && inputs[1].value.trim()) {
+                                alternates.push({
+                                    hreflang: inputs[0].value.trim(),
+                                    href: inputs[1].value.trim()
+                                });
+                            }
+                        });
+                        
+                        if (alternates.length > 0) {
+                            article.alternates = alternates;
+                        }
+                        
+                        articles.push(article);
+                        console.log(`Added article ${articles.length}:`, article);
+                    }
+                });
+                
+                console.log(`Total articles collected: ${articles.length}`);
+                
+                if (articles.length === 0) {
+                    throw new Error('Please provide at least one article with content.');
+                }
+                
+                // Update loading text to show estimated time
+                const estimatedMinutes = Math.max(1, articles.length - 1); // First article is immediate, rest have 1min delays
+                const progressText = document.getElementById('progress-text');
+                const loadingText = document.getElementById('loading-text');
+                
+                if (articles.length > 1) {
+                    loadingText.textContent = `Processing ${articles.length} articles (estimated time: ${estimatedMinutes} minutes)`;
+                    progressText.style.display = 'block';
+                    progressText.textContent = 'Articles are processed one by one with 1-minute intervals to avoid rate limits.';
+                } else {
+                    loadingText.textContent = 'Processing your article with AI...';
+                }
+                
+                const requestData = {
+                    articles: articles,
+                    model_name: formData.get('model') || 'gemini-2.5-pro'
+                };
+                
+                const response = await fetch('/api/process-articles', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const data = await response.json();
+                
+                loading.style.display = 'none';
+                results.style.display = 'block';
+                
+                if (data.success) {
+                    results.innerHTML = `
+                        <h2 class="success">Success</h2>
+                        <p>Successfully created ${data.files_created.length} markdown file(s):</p>
+                        <ul class="file-list">
+                            ${data.files_created.map(file => `<li>${file}</li>`).join('')}
+                        </ul>
+                        ${data.raw_response ? `
+                            <details style="margin-top: 1rem;">
+                                <summary style="cursor: pointer; font-weight: 600;">View Raw AI Response</summary>
+                                <pre style="background: #f7fafc; padding: 1rem; border-radius: 4px; margin-top: 0.5rem; overflow-x: auto; white-space: pre-wrap;">${data.raw_response}</pre>
+                            </details>
+                        ` : ''}
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <h2 class="error">Error</h2>
+                        <p>Something went wrong: ${data.error_message}</p>
+                    `;
+                }
+                
+            } catch (error) {
+                loading.style.display = 'none';
+                results.style.display = 'block';
+                results.innerHTML = `
+                    <h2 class="error">Error</h2>
+                    <p>Request failed: ${error.message}</p>
+                `;
+            }
+        });
+
+        // Load available models on page load
+        window.addEventListener('load', async function() {
+            try {
+                const response = await fetch('/api/models');
+                const data = await response.json();
+                
+                const select = document.getElementById('modelSelect');
+                select.innerHTML = '';
+                
+                data.models.forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    if (model === 'gemini-2.5-pro') {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Failed to load models:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "mcc",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@bloggrify/core": "^2.1.1",
+    "disable-devtool": "^0.3.9",
+    "nuxt": "^4.1.2",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "sass": "^1.93.3"
+  }
+}

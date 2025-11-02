@@ -1,0 +1,36 @@
+export default defineAppConfig({
+    url: 'https://thecollegechronicle.org',
+    theme: 'postpress',
+    name: 'The College Chronicle',
+    language: 'en',
+    tagline: 'The story beneath the noise.',
+    description:
+        'Reporting on science, technology, arts, opinion, and campus life from The College Chronicle.',
+    navigation: [
+        { label: 'Science', to: '/categories/science' },
+        { label: 'Research', to: '/categories/research' },
+        { label: 'Technology', to: '/categories/technology' },
+        { label: 'Opinion', to: '/categories/opinion' },
+        { label: 'Art', to: '/categories/art' },
+        { label: 'Misc', to: '/categories/misc' },
+        { label: 'News', to: '/categories/news' },
+        { label: 'About', to: '/about' },
+        { label: 'Paper Copy', to: '/paper-copy' },
+        { label: 'Staff', to: '/staff' },
+        { label: 'Apply Now', to: 'https://docs.google.com/forms/d/e/1FAIpQLSfLyJaOD6oNW35Gy1NhMm3yGzqzLQaMJPSjIONOOEeaQ8XZRQ/viewform', external: true },
+    ],
+    homeSections: [
+        { title: 'Science Desk', category: 'science' },
+        { title: 'Research', category: 'research' },
+        { title: 'Technology', category: 'technology' },
+        { title: 'Opinion', category: 'opinion', variant: 'list', limit: 4 },
+        { title: 'Art & Culture', category: 'art', variant: 'feature', limit: 5 },
+        { title: 'Miscellaneous', category: 'misc', variant: 'feature', limit: 5 },
+        { title: 'Newsroom Highlights', category: 'news' },
+    ],
+    footerLinks: [
+        { label: 'About', to: '/about' },
+        { label: 'Contact', to: '/contact' },
+        { label: 'Staff', to: '/staff' },
+    ],
+})
