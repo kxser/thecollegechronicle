@@ -5,7 +5,7 @@ date: 2026-11-01
 writers:
   - Hüseyin Efe Karataş
 categories:
-  - news
+  - opinion
 tags:
   - turkish-republic
   - october-29

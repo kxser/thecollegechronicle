@@ -22,7 +22,7 @@ source venv/bin/activate
 
 # Install dependencies
 echo "📚 Installing dependencies..."
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # Check if templates directory exists
 if [ ! -d "templates" ]; then
@@ -39,4 +39,4 @@ echo "To stop the server, press Ctrl+C"
 echo ""
 
 # Start the server
-python app.py
+python3 app.py

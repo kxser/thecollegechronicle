@@ -28,7 +28,7 @@ load_dotenv()
 # Configuration  
 BATCH_SIZE = 1  # Process one article at a time
 SEPARATOR_LINE = "********------********"
-API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyACP5jqTxVsVY0dCRQFNNv7wZi2nSfBx7k")  # Use environment variable or fallback
+API_KEY = os.getenv("GEMINI_API_KEY", "")  # Use environment variable or fallback
 
 # Base prompt (same as original script)
 BASE_PROMPT = """You are a meticulous copy editor for this project. You receive an article's text plus metadata in natural language. Your job is to make only mechanical corrections and construct a complete Markdown (.md) file that matches this project's front-matter, formatting, and file naming conventions. You may receive multiple articles in a single request. Process each one independently and output the final Markdown file for each article in the order provided, separating each completed file with a single blank line.
