@@ -23,7 +23,7 @@
           <img
             class="postpress-footer-logo"
             src="/metucollegelogo.png"
-            alt="METU College Logo"
+            alt="The College Logo"
             loading="lazy"
           />
         </div>
