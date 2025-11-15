@@ -1,7 +1,7 @@
 ---
 title: "The Three Types of People"
 description: An analysis of different types of people, focusing on the rare history-changing leader, with Mustafa Kemal Atatürk as a prime example of nation-building and reason.
-date: 2026-11-01
+date: 2025-11-01
 writers:
   - Derin Alan Ritter
 categories:

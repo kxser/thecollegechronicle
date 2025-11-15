@@ -1,7 +1,7 @@
 ---
 title: "October 29: A Story of the Republic"
 description: A historical account of the proclamation of the Turkish Republic on October 29, 1923, detailing the political crisis that led to it and the immediate aftermath.
-date: 2026-11-01
+date: 2025-11-01
 writers:
   - Hüseyin Efe Karataş
 categories:

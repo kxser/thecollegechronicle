@@ -1,7 +1,7 @@
 ---
 title: "The Brightest Crescent"
 description: A young girl reflects on her prescribed future and an arranged marriage while finding hope in the news of a coming republic.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Dafne Sümmeoğlu
 categories:

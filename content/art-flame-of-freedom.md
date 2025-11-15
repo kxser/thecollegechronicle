@@ -1,7 +1,7 @@
 ---
 title: "Flame of Freedom"
 description: An acrostic poem celebrating freedom, history, and the Republic, spelling out 'Republic Day'.
-date: 2026-11-01
+date: 2025-11-01
 writers:
   - Ece Özdemirci
 categories:

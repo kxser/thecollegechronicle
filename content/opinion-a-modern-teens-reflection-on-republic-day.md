@@ -1,7 +1,7 @@
 ---
 title: "Reflection on Republic Day"
 description: A young person reflects on the meaning of Republic Day in modern Türkiye, inspired by the nation's founding vision to dream big and shape the future.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Ayaz Nebi Maraşlıoğlu
 categories:

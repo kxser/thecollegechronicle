@@ -1,7 +1,7 @@
 ---
 title: "Dear Atatürk, Letter to Atatürk"
 description: A letter of gratitude to Atatürk, celebrating the legacy of freedom and the declaration of the Turkish Republic.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Nevra Gümüş
 categories:

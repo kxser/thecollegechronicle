@@ -1,7 +1,7 @@
 ---
 title: "Bricks and Mortar"
 description: A soldier reflects on loss and duty during the Gallipoli campaign, his final thoughts recorded in a journal passed on to the next generation.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Eylül Pamukçu
 categories:

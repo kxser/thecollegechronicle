@@ -167,7 +167,7 @@ html, body {
 .postpress-kicker {
   font-family: var(--postpress-sans);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
   font-size: 0.75rem;
   color: var(--postpress-accent);
   margin-bottom: 0.5rem;
@@ -563,7 +563,7 @@ html, body {
   font-family: var(--postpress-sans);
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
   color: var(--postpress-muted);
 }
 
@@ -580,7 +580,7 @@ html, body {
   align-items: center;
   justify-content: center;
   padding: clamp(4rem, 8vw, 6rem) 1.5rem;
-  background: radial-gradient(120% 120% at 15% 15%, rgba(115, 129, 255, 0.32), rgba(7, 7, 12, 0.92) 65%), linear-gradient(160deg, #090a12 0%, #040406 100%);
+  background: radial-gradient(120% 120% at 15% 15%, rgba(123, 0, 0, 0.32), rgba(7, 7, 12, 0.92) 65%), linear-gradient(160deg, #090a12 0%, #040406 100%);
   color: #f6f5ef;
   position: relative;
   overflow: hidden;

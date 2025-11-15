@@ -1,7 +1,7 @@
 ---
 title: "Young Minds, Old Dreams"
 description: An exploration of Atatürk's revolutionary ideas and enduring legacy, inspiring today's youth in Türkiye to see themselves as leaders of their own stories.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Elif Serra Eker
 categories:

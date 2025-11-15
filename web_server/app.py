@@ -410,7 +410,7 @@ Front matter must begin with --- and end with ---.
 
 There must be exactly one blank line between front matter and body.
 
-DO NOT FORGET: THE CURRENT YEAR IS 2026, NOT 2025.
+DO NOT FORGET: THE CURRENT YEAR IS 2025, NOT 2024.
 """
 
 # Data models

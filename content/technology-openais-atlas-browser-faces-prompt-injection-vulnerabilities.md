@@ -1,7 +1,7 @@
 ---
 title: "OpenAI's Atlas Browser Faces Prompt Injection Vulnerabilities"
 description: OpenAI's new Atlas browser highlights the persistent security challenge of prompt injection, a vulnerability affecting many AI-driven tools that is difficult to fully prevent.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Derin Alan Ritter
 categories:

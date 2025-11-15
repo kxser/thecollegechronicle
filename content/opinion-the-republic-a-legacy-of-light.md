@@ -1,7 +1,7 @@
 ---
 title: "The Republic: A Legacy of Light"
 description: A student reflects on the meaning of the Turkish Republic, founded by Atatürk, as a promise of freedom, education, and hope for the future.
-date: 2026-11-01
+date: 2025-11-01
 writers:
   - Deren Yıldız 
 categories:

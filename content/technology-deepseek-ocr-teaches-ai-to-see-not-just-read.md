@@ -1,7 +1,7 @@
 ---
 title: "DeepSeek-OCR Teaches AI to See, Not Just Read"
 description: DeepSeek-OCR is a novel artificial intelligence model that processes text visually, compressing entire pages into dense tokens to improve efficiency and enable new forms of AI memory.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - Derin Alan Ritter
 categories:

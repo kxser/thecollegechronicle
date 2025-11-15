@@ -1,7 +1,7 @@
 ---
 title: "Now It Is Your Turn"
 description: A young person reflects on the meaning of Republic Day after discovering an old notebook with a message from the past, realizing their own role in the nation's future.
-date: 2026-11-02
+date: 2025-11-02
 writers:
   - İpek Özcan
 categories:

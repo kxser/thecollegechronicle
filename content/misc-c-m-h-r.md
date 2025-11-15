@@ -1,7 +1,7 @@
 ---
 title: "C-M-H-R"
 description: An etymological exploration of the word 'cumhuriyet' (republic), tracing its Arabic and Latin roots related to the concepts of people and public.
-date: 2026-11-01
+date: 2025-11-01
 writers:
   - Tan Esat Tacettin
 categories:
