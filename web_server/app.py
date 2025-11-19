@@ -19,6 +19,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import google.generativeai as genai
+from google.api_core import exceptions as google_exceptions
 from dotenv import load_dotenv
 import config
 
@@ -29,6 +30,11 @@ load_dotenv()
 BATCH_SIZE = 1  # Process one article at a time
 SEPARATOR_LINE = "********------********"
 API_KEY = os.getenv("GEMINI_API_KEY", "")  # Use environment variable or fallback
+MAX_RETRY_ATTEMPTS = 5
+BASE_RETRY_DELAY_SECONDS = 30
+MAX_RETRY_DELAY_SECONDS = 5 * 60
+RETRY_IN_SECONDS_PATTERN = re.compile(r"retry in (\d+(?:\.\d+)?)s", re.IGNORECASE)
+RETRY_DELAY_SECONDS_PATTERN = re.compile(r"retry_delay\s*\{\s*seconds:\s*(\d+)", re.IGNORECASE)
 
 # Base prompt (same as original script)
 BASE_PROMPT = """You are a meticulous copy editor for this project. You receive an article's text plus metadata in natural language. Your job is to make only mechanical corrections and construct a complete Markdown (.md) file that matches this project's front-matter, formatting, and file naming conventions. You may receive multiple articles in a single request. Process each one independently and output the final Markdown file for each article in the order provided, separating each completed file with a single blank line.
@@ -632,6 +638,55 @@ def parse_and_create_files(response_text: str, content_dir: Path = None) -> List
     
     return created_files
 
+
+def extract_retry_delay_seconds(error: Exception) -> Optional[float]:
+    """Try to parse retry delay information embedded in Gemini error messages."""
+    message = str(error)
+    for pattern in (RETRY_IN_SECONDS_PATTERN, RETRY_DELAY_SECONDS_PATTERN):
+        match = pattern.search(message)
+        if match:
+            try:
+                return float(match.group(1))
+            except (TypeError, ValueError):
+                continue
+    retry_delay = getattr(error, "retry_delay", None)
+    if retry_delay:
+        seconds = getattr(retry_delay, "seconds", None)
+        if isinstance(seconds, (int, float)):
+            return float(seconds)
+    return None
+
+
+def is_rate_limit_error(error: Exception) -> bool:
+    """Determine whether an exception is caused by API rate limiting/quota."""
+    if isinstance(error, google_exceptions.ResourceExhausted):
+        return True
+    message = str(error).lower()
+    return any(keyword in message for keyword in ("quota", "rate limit", "429"))
+
+
+async def generate_with_retry(model: genai.GenerativeModel, prompt_text: str, article_index: int) -> Any:
+    """Call Gemini generation API with exponential backoff on rate limit errors."""
+    delay = BASE_RETRY_DELAY_SECONDS
+    for attempt in range(1, MAX_RETRY_ATTEMPTS + 1):
+        try:
+            return model.generate_content(prompt_text)
+        except Exception as exc:
+            if not is_rate_limit_error(exc):
+                raise
+            if attempt == MAX_RETRY_ATTEMPTS:
+                raise RuntimeError(
+                    f"Rate limit retries exhausted for article {article_index}."
+                ) from exc
+            retry_delay = extract_retry_delay_seconds(exc) or delay
+            wait_time = min(retry_delay, MAX_RETRY_DELAY_SECONDS)
+            print(
+                f"Rate limit hit for article {article_index} (attempt {attempt}/{MAX_RETRY_ATTEMPTS}). "
+                f"Waiting {wait_time:.1f}s before retrying..."
+            )
+            await asyncio.sleep(wait_time)
+            delay = min(delay * 2, MAX_RETRY_DELAY_SECONDS)
+
 # Routes
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -661,7 +716,7 @@ async def process_articles(batch_input: BatchArticleInput):
             prompt_text = build_batch_prompt(single_article_batch)
             
             try:
-                response = model.generate_content(prompt_text)
+                response = await generate_with_retry(model, prompt_text, article_index=i + 1)
                 response_text = extract_text(response).strip()
                 print(f"Debug: Article {i+1} - AI response length: {len(response_text)}")
                 print(f"Debug: Article {i+1} - AI response preview: {response_text[:200]}...")
