@@ -3,7 +3,7 @@ title: "The Practical Benefits of Free and Open Source Software"
 description: An overview of Free and Open Source Software (FOSS), detailing its key advantages in cost, security, education, and business adoption.
 date: 2025-10-30
 writers:
-  - Derin Alan Ritter
+  - Deniz Gülce Koç
 categories:
   - technology
 tags:
