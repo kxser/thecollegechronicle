@@ -69,13 +69,22 @@ alternates:
 
 <section class="postpress-staff-section">
 	<h2>Writers</h2>
-	<div>
-		<p><strong>TBD</strong> — To be determined.</p>
-		<p><strong>TBD</strong> — To be determined.</p>
-		<p><strong>TBD</strong> — To be determined.</p>
-		<p><strong>TBD</strong> — To be determined.</p>
-		<p><strong>TBD</strong> — To be determined.</p>
-		<p><strong>TBD</strong> — To be determined.</p>
+	<div class="postpress-staff-grid">
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Arda Konuk</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Asya Göymen</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Ayaz Nebi Maraşlıoğlu</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Dafne Sümmeoğlu</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Deniz Gülce Koç</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Deren Yıldız</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Derin Alan Ritter</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Doğa Aksoy</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Ece Özdemirci</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Elif Serra Eker</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Eylül Pamukçu</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Hüseyin Efe Karataş</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Nevra Gümüş</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>Tan Esat Tacettin</strong></div>
+		<div class="postpress-staff-card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;"><strong>İpek Özcan</strong></div>
 	</div>
 </section>
 
