@@ -2,7 +2,13 @@
 import * as sass from 'sass'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: "2025-12-23",
+  nitro: {
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+  }},
   devtools: { enabled: true },
   css: ['~/assets/styles/themes/postpress.css'],
   vite: {
