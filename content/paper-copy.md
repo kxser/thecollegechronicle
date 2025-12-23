@@ -20,6 +20,20 @@ alternates:
   <ul class="postpress-paper-copy__list">
     <li class="postpress-paper-copy__item">
       <div class="postpress-paper-copy__meta">
+        <span class="postpress-paper-copy__issue">November Edition</span>
+        <span class="postpress-paper-copy__date">Published November 2025</span>
+      </div>
+      <a
+        class="postpress-paper-copy__action"
+        href="https://www.dropbox.com/scl/fi/9z8jlhf5g5dvte0c1idm6/The-College-Chronicle-November.pdf?rlkey=t5o5hp3xncmklfjuk6s1vkjfl&st=a3vvze5h&dl=1"
+        target="_blank"
+        rel="noopener"
+      >
+        Download PDF
+      </a>
+    </li>
+    <li class="postpress-paper-copy__item">
+      <div class="postpress-paper-copy__meta">
         <span class="postpress-paper-copy__issue">October 29 Special Edition</span>
         <span class="postpress-paper-copy__date">Published October 29, 2025</span>
       </div>
