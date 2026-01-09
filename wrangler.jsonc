@@ -12,7 +12,7 @@
   },
   "vars": {
     "BASE_URL": "https://thecollegechronicle.org",
-    "GOOGLE_API_KEY": "AIzaSyACP5jqTxVsVY0dCRQFNNv7wZi2nSfBx7k",
+    "GOOGLE_API_KEY": "AIzaSyDRkNuVv4-F-5KmpuvfsfyqmcHFxmG_3-o",
     "SITE_INDEXABLE": "true",
     "SITE_URL": "https://thecollegechronicle.org"
   }
