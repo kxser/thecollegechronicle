@@ -109,3 +109,10 @@ wrangler.jsonc
 wrangler.jsonc
 ./wrangler.jsonc
 node_modules
+
+web_server/.env
+./web_server/.env
+*/.env
+.env
+
+./web_server/*
